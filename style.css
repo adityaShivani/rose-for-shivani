@@ -1,0 +1,50 @@
+/* MOBILE FIRST DESIGN */
+
+:root{
+  --bg:#0f172a;
+  --card:#111827;
+  --accent:#ff4d7d;
+  --text:#f1f5f9;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* center container */
+.container{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:22px;
+  text-align:center;
+}
+
+/* buttons */
+.btn{
+  margin-top:28px;
+  padding:14px 26px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  color:white;
+  font-size:18px;
+  font-weight:700;
+}
+
+/* typing text */
+.typing{
+  font-size:22px;
+  line-height:1.5;
+  max-width:320px;
+}

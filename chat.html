@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* chat layout */
+.chat{
+  width:100%;
+  max-width:420px;
+  margin:auto;
+  padding-top:20px;
+}
+
+.msg{
+  max-width:75%;
+  padding:12px 14px;
+  margin:10px 0;
+  border-radius:18px;
+  line-height:1.4;
+  font-size:16px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:.4s;
+}
+
+/* you */
+.me{
+  background:#1f2937;
+  margin-left:auto;
+  border-bottom-right-radius:6px;
+}
+
+/* her */
+.her{
+  background:#ff4d7d;
+  color:white;
+  border-bottom-left-radius:6px;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.nextBtn{
+  display:none;
+  margin:30px auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="chat" id="chatBox"></div>
+
+  <button class="btn nextBtn" id="next">Continue</button>
+
+</div>
+
+<script src="chat.js"></script>
+</body>
+</html>

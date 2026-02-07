@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Shivani</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+  overflow:hidden;
+}
+
+/* message */
+.letter{
+  max-width:420px;
+  line-height:1.8;
+  font-size:18px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(20px);
+  transition:1.5s;
+  z-index:2;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.title{
+  font-size:28px;
+  margin-bottom:20px;
+  color:#ff4d7d;
+}
+
+/* roses falling */
+.rose{
+  position:fixed;
+  top:-50px;
+  font-size:28px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="letter" id="letter">
+    <div class="title">🌹 Happy Rose Day 🌹</div>
+
+    Not every rose is perfect,<br>
+    but some feel special.
+
+    <br><br>
+
+    Just like you.
+
+    <br><br>
+
+    So today I wanted to give you roses,<br>
+    not in real life yet…<br>
+    but from my side of the screen ❤️
+
+    <br><br>
+
+    And maybe one day,<br>
+    I’ll give them to you for real.
+
+    <div style="margin-top:30px;color:#ff4d7d;font-size:22px;">
+      — Aditya
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* reveal text */
+setTimeout(()=>{
+  document.getElementById("letter").classList.add("show");
+},400);
+
+/* falling roses */
+function createRose(){
+  const r=document.createElement("div");
+  r.className="rose";
+  r.innerText="🌹";
+
+  r.style.left=Math.random()*100+"vw";
+  r.style.animationDuration=(4+Math.random()*4)+"s";
+
+  document.body.appendChild(r);
+
+  setTimeout(()=>r.remove(),8000);
+}
+
+/* keep generating roses */
+setInterval(createRose,300);
+
+</script>
+
+</body>
+</html>

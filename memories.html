@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.feed{
+  width:100%;
+  max-width:420px;
+}
+
+.memory{
+  background:#111827;
+  border-radius:18px;
+  overflow:hidden;
+  margin:22px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s;
+}
+
+.memory img{
+  width:100%;
+  display:block;
+}
+
+.caption{
+  padding:16px;
+  font-size:16px;
+  line-height:1.5;
+  text-align:left;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.endBtn{
+  margin-top:30px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="feed" id="feed">
+
+
+    <div class="memory">
+      <img src="photos/2.jpg">
+      <div class="caption">
+        Sometimes memories are small…  
+        but feelings inside them are huge.
+      </div>
+    </div>
+
+    <div class="memory">
+      <img src="photos/3.jpg">
+      <div class="caption">
+        You probably saw just a normal day…  
+        I saw my favorite one.
+      </div>
+    </div>
+
+    <div class="memory">
+      <img src="photos/4.jpg">
+      <div class="caption">
+        And somewhere between all this…  
+        you became special to me.
+      </div>
+    </div>
+
+  </div>
+
+  <button class="btn endBtn" id="continue">I want to see more</button>
+
+</div>
+
+<script src="memories.js"></script>
+</body>
+</html>
