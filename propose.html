@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💍 Will You Be Mine? 💍</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --platinum: #E5E4E2;
+  --silver: #C0C0C0;
+  --diamond-white: #F0F8FF;
+  --night-blue: #0B1426;
+  --deep-navy: #050A14;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: #050A14;
+  color: white;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Midnight sky background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at top, #1a2332 0%, transparent 60%),
+    radial-gradient(ellipse at bottom, #0d1421 0%, transparent 50%),
+    linear-gradient(to bottom, #050A14 0%, #0B1426 50%, #0d1421 100%);
+  z-index: 0;
+}
+
+/* Animated background particles */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Crescent Moon - Ultra Realistic */
+.moon {
+  position: fixed;
+  top: 60px;
+  right: 8%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, #fff, #f0f0f0 40%, #d4d4d4 70%, #b8b8b8),
+    radial-gradient(circle at 60% 70%, rgba(200, 200, 200, 0.3), transparent);
+  box-shadow: 
+    0 0 80px rgba(255, 255, 255, 0.6),
+    0 0 120px rgba(255, 255, 255, 0.3),
+    inset -30px -10px 60px rgba(0, 0, 0, 0.15),
+    inset 10px 10px 30px rgba(255, 255, 255, 0.2);
+  z-index: 100;
+  animation: moonGlow 6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Moon craters for realism */
+.moon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 35%, rgba(150, 150, 150, 0.3) 0%, transparent 8%),
+    radial-gradient(circle at 70% 50%, rgba(150, 150, 150, 0.25) 0%, transparent 6%),
+    radial-gradient(circle at 45% 65%, rgba(150, 150, 150, 0.2) 0%, transparent 10%),
+    radial-gradient(circle at 80% 75%, rgba(150, 150, 150, 0.2) 0%, transparent 5%),
+    radial-gradient(circle at 35% 80%, rgba(150, 150, 150, 0.15) 0%, transparent 7%);
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+/* Crescent shadow */
+.moon::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 40% 40%, #050A14 0%, #0B1426 60%, transparent 75%);
+  box-shadow: 
+    inset 20px 15px 40px rgba(0, 0, 0, 0.8),
+    inset -5px -5px 20px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+/* Atmospheric glow around moon */
+.moon-atmosphere {
+  position: fixed;
+  top: 40px;
+  right: calc(8% - 20px);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 60%);
+  z-index: 99;
+  animation: atmosphereGlow 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes moonGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 80px rgba(255, 255, 255, 0.6),
+      0 0 120px rgba(255, 255, 255, 0.3),
+      inset -30px -10px 60px rgba(0, 0, 0, 0.15),
+      inset 10px 10px 30px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 100px rgba(255, 255, 255, 0.7),
+      0 0 150px rgba(255, 255, 255, 0.4),
+      inset -30px -10px 60px rgba(0, 0, 0, 0.15),
+      inset 10px 10px 30px rgba(255, 255, 255, 0.25);
+  }
+}
+
+@keyframes atmosphereGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  25% { transform: translate(30px, -40px) scale(1.1); opacity: 0.4; }
+  50% { transform: translate(-20px, -80px) scale(0.9); opacity: 0.5; }
+  75% { transform: translate(40px, -120px) scale(1.05); opacity: 0.3; }
+}
+
+/* Starfield */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
+/* Main container */
+.container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header */
+.header {
+  opacity: 0;
+  animation: fadeInDown 1.5s ease forwards;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(32px, 8vw, 56px);
+  font-weight: 600;
+  background: linear-gradient(135deg, #E5E4E2, #ffffff, #C0C0C0, #E5E4E2);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  animation: fadeIn 2s ease 1s forwards;
+  letter-spacing: 2px;
+}
+
+/* 3D Diamond Ring Scene - Ultra Realistic */
+.ring-scene {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 40px auto;
+  opacity: 0;
+  animation: fadeInScale 2s ease 0.5s forwards;
+  perspective: 1200px;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotateY(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+.ring-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+  animation: pulseGlow 4s ease-in-out infinite;
+  filter: blur(20px);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+.ring-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: rotate3D 25s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes rotate3D {
+  from { transform: rotateY(0deg) rotateX(12deg); }
+  to { transform: rotateY(360deg) rotateX(12deg); }
+}
+
+/* Realistic Platinum Ring Band */
+.ring-band {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  margin: -90px 0 0 -90px;
+  border-radius: 50%;
+  background: 
+    linear-gradient(135deg, 
+      #e8e8e8 0%, 
+      #ffffff 15%, 
+      #d4d4d4 30%,
+      #f8f8f8 45%,
+      #c8c8c8 60%, 
+      #f0f0f0 75%,
+      #d0d0d0 90%,
+      #e8e8e8 100%);
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(255, 255, 255, 0.3),
+    inset 0 -10px 25px rgba(0, 0, 0, 0.4),
+    inset 0 10px 25px rgba(255, 255, 255, 0.6),
+    inset 0 0 40px rgba(255, 255, 255, 0.1);
+  border: 14px solid;
+  border-image: linear-gradient(135deg, 
+    #f8f8f8, 
+    #b8b8b8, 
+    #e8e8e8, 
+    #a8a8a8,
+    #f0f0f0) 1;
+  animation: ringShimmer 5s ease-in-out infinite;
+}
+
+/* Inner hole of the ring */
+.ring-band::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110px;
+  height: 110px;
+  margin: -55px 0 0 -55px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, #0B1426, #050A14);
+  box-shadow: 
+    inset 0 0 30px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Ring engravings for detail */
+.ring-band::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: 
+    repeating-conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255, 255, 255, 0.1) 2deg,
+      transparent 4deg
+    );
+  opacity: 0.3;
+}
+
+@keyframes ringShimmer {
+  0%, 100% { 
+    filter: brightness(1) contrast(1.1);
+    box-shadow: 
+      0 8px 40px rgba(0, 0, 0, 0.6),
+      0 0 60px rgba(255, 255, 255, 0.3),
+      inset 0 -10px 25px rgba(0, 0, 0, 0.4),
+      inset 0 10px 25px rgba(255, 255, 255, 0.6);
+  }
+  50% { 
+    filter: brightness(1.15) contrast(1.15);
+    box-shadow: 
+      0 8px 40px rgba(0, 0, 0, 0.7),
+      0 0 80px rgba(255, 255, 255, 0.4),
+      inset 0 -10px 25px rgba(0, 0, 0, 0.4),
+      inset 0 10px 25px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Ultra Realistic Diamond */
+.diamond {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  margin-left: -45px;
+  transform-style: preserve-3d;
+  animation: diamondFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 15px 40px rgba(255, 255, 255, 0.4));
+}
+
+@keyframes diamondFloat {
+  0%, 100% { 
+    transform: translateY(0) scale(1) rotateZ(0deg); 
+  }
+  50% { 
+    transform: translateY(-12px) scale(1.03) rotateZ(2deg); 
+  }
+}
+
+/* Diamond Table (top flat surface) */
+.diamond-table {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  margin-left: -22px;
+  width: 44px;
+  height: 44px;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  background: 
+    radial-gradient(circle at 35% 35%, 
+      rgba(255, 255, 255, 1) 0%,
+      rgba(230, 245, 255, 0.95) 30%,
+      rgba(200, 230, 255, 0.9) 60%,
+      rgba(180, 220, 250, 0.95) 100%);
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.9),
+    inset -8px -8px 20px rgba(180, 220, 250, 0.5),
+    inset 8px 8px 20px rgba(255, 255, 255, 0.6);
+  animation: diamondSparkle 3s ease-in-out infinite;
+}
+
+@keyframes diamondSparkle {
+  0%, 100% {
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+  }
+  15% {
+    filter: brightness(1.6) drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+  }
+  30% {
+    filter: brightness(1.1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.7));
+  }
+  45% {
+    filter: brightness(1.5) drop-shadow(0 0 28px rgba(255, 255, 255, 0.95));
+  }
+  60% {
+    filter: brightness(1.15) drop-shadow(0 0 18px rgba(255, 255, 255, 0.75));
+  }
+  80% {
+    filter: brightness(1.4) drop-shadow(0 0 25px rgba(255, 255, 255, 0.9));
+  }
+}
+
+/* Crown facets (upper pyramid sides) */
+.diamond-crown-left {
+  position: absolute;
+  top: 22px;
+  left: 5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 36px 23px;
+  border-color: transparent transparent rgba(210, 235, 255, 0.85) transparent;
+  filter: 
+    drop-shadow(0 0 12px rgba(200, 230, 255, 0.5))
+    brightness(0.95);
+}
+
+.diamond-crown-right {
+  position: absolute;
+  top: 22px;
+  right: 5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 23px 36px 0;
+  border-color: transparent rgba(210, 235, 255, 0.85) transparent transparent;
+  filter: 
+    drop-shadow(0 0 12px rgba(200, 230, 255, 0.5))
+    brightness(0.95);
+}
+
+.diamond-crown-front {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  margin-left: -20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 36px 20px 0 20px;
+  border-color: rgba(220, 240, 255, 0.9) transparent transparent transparent;
+  filter: 
+    drop-shadow(0 0 15px rgba(220, 240, 255, 0.6))
+    brightness(1.05);
+}
+
+/* Pavilion (bottom pointed part) */
+.diamond-pavilion {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  margin-left: -24px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 32px 24px 0 24px;
+  border-color: rgba(190, 220, 245, 0.8) transparent transparent transparent;
+  filter: 
+    drop-shadow(0 8px 20px rgba(150, 190, 230, 0.5))
+    brightness(0.9);
+}
+
+.diamond-pavilion-back {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  margin-left: -18px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 28px 18px 0 18px;
+  border-color: rgba(170, 210, 240, 0.7) transparent transparent transparent;
+  filter: 
+    drop-shadow(0 6px 18px rgba(130, 180, 220, 0.4))
+    brightness(0.85);
+}
+
+/* Realistic Prong Settings */
+.prong {
+  position: absolute;
+  width: 5px;
+  height: 42px;
+  background: 
+    linear-gradient(180deg, 
+      #f8f8f8 0%, 
+      #e0e0e0 30%,
+      #c8c8c8 60%, 
+      #d8d8d8 100%);
+  border-radius: 3px;
+  box-shadow: 
+    0 0 12px rgba(255, 255, 255, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    2px 0 8px rgba(0, 0, 0, 0.3);
+  top: 40px;
+}
+
+.prong::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  margin-left: -3px;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffffff, #d0d0d0);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.prong:nth-child(7) { 
+  left: 18px; 
+  transform: rotate(-12deg);
+  height: 40px;
+}
+
+.prong:nth-child(8) { 
+  right: 18px; 
+  transform: rotate(12deg);
+  height: 40px;
+}
+
+.prong:nth-child(9) { 
+  left: 8px; 
+  transform: rotate(-28deg);
+  height: 38px;
+}
+
+.prong:nth-child(10) { 
+  right: 8px; 
+  transform: rotate(28deg);
+  height: 38px;
+}
+
+/* Light rays from diamond */
+.light-ray {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+  transform-origin: top center;
+  animation: rayRotate 6s linear infinite;
+}
+
+.light-ray:nth-child(11) { transform: rotate(0deg); animation-delay: 0s; }
+.light-ray:nth-child(12) { transform: rotate(45deg); animation-delay: 0.7s; }
+.light-ray:nth-child(13) { transform: rotate(90deg); animation-delay: 1.4s; }
+.light-ray:nth-child(14) { transform: rotate(135deg); animation-delay: 2.1s; }
+.light-ray:nth-child(15) { transform: rotate(180deg); animation-delay: 2.8s; }
+.light-ray:nth-child(16) { transform: rotate(225deg); animation-delay: 3.5s; }
+.light-ray:nth-child(17) { transform: rotate(270deg); animation-delay: 4.2s; }
+.light-ray:nth-child(18) { transform: rotate(315deg); animation-delay: 4.9s; }
+
+@keyframes rayRotate {
+  from { opacity: 0.2; }
+  50% { opacity: 0.6; }
+  to { opacity: 0.2; }
+}
+
+/* Message cards */
+.message-section {
+  max-width: 500px;
+  margin: 40px auto;
+  opacity: 0;
+  animation: fadeIn 2s ease 2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.message-card {
+  background: rgba(20, 30, 50, 0.3);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 35px 25px;
+  margin-bottom: 30px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(30px);
+  animation: slideUp 1s ease forwards;
+}
+
+.message-card:nth-child(1) { animation-delay: 2.2s; }
+.message-card:nth-child(2) { animation-delay: 2.6s; }
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.message-card p {
+  font-size: clamp(18px, 4vw, 22px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0;
+  font-weight: 300;
+}
+
+.highlight {
+  color: #E5E4E2;
+  font-weight: 600;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* Final question */
+.final-question {
+  margin-top: 50px;
+  opacity: 0;
+  animation: finalReveal 2s ease 4s forwards;
+}
+
+@keyframes finalReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.final-question h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 6vw, 42px);
+  color: #FFB6C1;
+  text-shadow: 0 0 30px rgba(255, 182, 193, 0.5);
+  margin-bottom: 30px;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(1.05); }
+  20% { transform: scale(1); }
+}
+
+/* Interactive button */
+.answer-button {
+  background: linear-gradient(135deg, #C71585, #FF1493, #C71585);
+  background-size: 200% 200%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 18px 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 
+    0 10px 40px rgba(199, 21, 133, 0.4),
+    0 0 30px rgba(255, 105, 180, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+  animation: buttonGlow 3s ease-in-out infinite;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    background-position: 0% 50%;
+    box-shadow: 
+      0 10px 40px rgba(199, 21, 133, 0.4),
+      0 0 30px rgba(255, 105, 180, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 
+      0 15px 50px rgba(199, 21, 133, 0.6),
+      0 0 40px rgba(255, 105, 180, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+}
+
+.answer-button:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.answer-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 20px 60px rgba(199, 21, 133, 0.6),
+    0 0 50px rgba(255, 105, 180, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.answer-button:hover:before {
+  width: 300px;
+  height: 300px;
+}
+
+.answer-button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Hearts explosion */
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  display: none;
+}
+
+.heart {
+  position: absolute;
+  font-size: 30px;
+  animation: heartFloat 4s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(720deg) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Success message */
+.success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(5, 10, 20, 0.95);
+  padding: 50px;
+  border-radius: 30px;
+  border: 2px solid rgba(229, 228, 226, 0.3);
+  z-index: 2000;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  backdrop-filter: blur(10px);
+}
+
+.success-message.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.success-message h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  color: #E5E4E2;
+  margin-bottom: 20px;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+.success-message p {
+  font-size: 20px;
+  color: white;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .moon {
+    width: 90px;
+    height: 90px;
+    top: 50px;
+    right: 6%;
+  }
+  
+  .moon::before {
+    width: 85px;
+    height: 85px;
+    right: 8px;
+  }
+  
+  .moon-atmosphere {
+    width: 130px;
+    height: 130px;
+    top: 30px;
+    right: calc(6% - 20px);
+  }
+  
+  .ring-scene {
+    width: 260px;
+    height: 260px;
+  }
+  
+  .ring-glow {
+    width: 220px;
+    height: 220px;
+    margin: -110px 0 0 -110px;
+  }
+  
+  .ring-band {
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-width: 12px;
+  }
+  
+  .ring-band::before {
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+  }
+  
+  .diamond {
+    width: 75px;
+    height: 75px;
+    margin-left: -37.5px;
+  }
+  
+  .diamond-table {
+    top: 15px;
+    margin-left: -18px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .diamond-crown-left {
+    top: 18px;
+    left: 4px;
+    border-width: 0 0 30px 19px;
+  }
+  
+  .diamond-crown-right {
+    top: 18px;
+    right: 4px;
+    border-width: 0 19px 30px 0;
+  }
+  
+  .diamond-crown-front {
+    top: 18px;
+    margin-left: -17px;
+    border-width: 30px 17px 0 17px;
+  }
+  
+  .diamond-pavilion {
+    top: 48px;
+    margin-left: -20px;
+    border-width: 27px 20px 0 20px;
+  }
+  
+  .diamond-pavilion-back {
+    top: 48px;
+    margin-left: -15px;
+    border-width: 24px 15px 0 15px;
+  }
+  
+  .prong {
+    width: 4px;
+    height: 35px;
+  }
+  
+  .prong:nth-child(7) { 
+    left: 15px; 
+    height: 33px;
+  }
+  
+  .prong:nth-child(8) { 
+    right: 15px; 
+    height: 33px;
+  }
+  
+  .prong:nth-child(9) { 
+    left: 7px; 
+    height: 32px;
+  }
+  
+  .prong:nth-child(10) { 
+    right: 7px; 
+    height: 32px;
+  }
+  
+  .message-card {
+    padding: 25px 20px;
+  }
+  
+  .answer-button {
+    font-size: 18px;
+    padding: 15px 40px;
+  }
+  
+  .success-message {
+    padding: 35px 25px;
+    max-width: 90%;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Background particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Crescent Moon -->
+<div class="moon"></div>
+<div class="moon-atmosphere"></div>
+
+<!-- Main content -->
+<div class="container">
+  <div class="header">
+    <h1>💍 Propose Day 💍</h1>
+    <div class="subtitle">A Special Moment</div>
+  </div>
+
+  <!-- 3D Ring Scene -->
+  <div class="ring-scene">
+    <div class="ring-glow"></div>
+    <div class="ring-container">
+      <div class="ring-band"></div>
+      <div class="diamond">
+        <div class="diamond-facet diamond-table"></div>
+        <div class="diamond-facet diamond-crown-left"></div>
+        <div class="diamond-facet diamond-crown-right"></div>
+        <div class="diamond-facet diamond-crown-front"></div>
+        <div class="diamond-facet diamond-pavilion"></div>
+        <div class="diamond-facet diamond-pavilion-back"></div>
+        <div class="prong"></div>
+        <div class="prong"></div>
+        <div class="prong"></div>
+        <div class="prong"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message Section -->
+  <div class="message-section">
+    <div class="message-card">
+      <p>
+        I don't know when it started, but you slowly became 
+        <span class="highlight">the best part of my day</span>.
+      </p>
+    </div>
+    
+    <div class="message-card">
+      <p>
+        Every moment with you feels like 
+        <span class="highlight">magic</span>, and I never want 
+        this feeling to end.
+      </p>
+    </div>
+  </div>
+
+  <!-- Final Question -->
+  <div class="final-question">
+    <h2>Will You Be Mine? ❤️</h2>
+    <button class="answer-button" onclick="celebrate()">
+      YES! 💕
+    </button>
+  </div>
+</div>
+
+<!-- Hearts explosion container -->
+<div class="hearts-container" id="heartsContainer"></div>
+
+<!-- Success message -->
+<div class="success-message" id="successMessage">
+  <h3>🎉 Forever & Always 🎉</h3>
+  <p>
+    You've made me the happiest person alive!<br>
+    This is just the beginning of our beautiful journey together. ❤️
+  </p>
+</div>
+
+<script>
+// Create starfield
+function createStars() {
+  const container = document.body;
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.width = Math.random() * 3 + 'px';
+    star.style.height = star.style.width;
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    star.style.zIndex = '1';
+    container.appendChild(star);
+  }
+}
+
+// Create floating particles
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.width = Math.random() * 60 + 30 + 'px';
+    particle.style.height = particle.style.width;
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 15 + 's';
+    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+    container.appendChild(particle);
+  }
+}
+
+// Celebration function
+function celebrate() {
+  const button = event.target;
+  button.style.pointerEvents = 'none';
+  
+  // Create hearts explosion
+  const container = document.getElementById('heartsContainer');
+  container.style.display = 'block';
+  
+  const heartEmojis = ['💕', '💖', '💗', '💓', '💝', '❤️', '💞', '💘'];
+  
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.top = '100%';
+      heart.style.animationDelay = Math.random() * 0.5 + 's';
+      container.appendChild(heart);
+      
+      setTimeout(() => heart.remove(), 4000);
+    }, i * 50);
+  }
+  
+  // Show success message
+  setTimeout(() => {
+    document.getElementById('successMessage').classList.add('show');
+  }, 1500);
+  
+  // Add sparkle effect to button
+  button.innerHTML = '✨ YES! ✨';
+  button.style.background = 'linear-gradient(135deg, #E5E4E2, #ffffff, #C0C0C0)';
+  button.style.color = '#050A14';
+}
+
+// Initialize
+createStars();
+createParticles();
+
+// Add scroll reveal for mobile
+window.addEventListener('scroll', () => {
+  const elements = document.querySelectorAll('.message-card');
+  elements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8) {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
