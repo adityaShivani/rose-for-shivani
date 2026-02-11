@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💍 Promise Day — My Forever Starts With You</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0a0a0f;
+  --bg-card: #14141f;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+  --blue: #60a5fa;
+  --text: #ffffff;
+  --text-dim: #9ca3af;
+  --accent-glow: rgba(167, 139, 250, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* Animated gradient background */
+.bg-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(167, 139, 250, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(244, 114, 182, 0.12), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.1), transparent 50%);
+  animation: bgFloat 20s ease infinite;
+}
+
+@keyframes bgFloat {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.1); 
+  }
+}
+
+/* Stars background */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Container */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.date {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 0 80px;
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(244, 114, 182, 0.2));
+  border-radius: 30px;
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-badge::before {
+  content: '💜';
+  font-size: 16px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 12vw, 72px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #fff, #e0e0e0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+.hero-subtitle {
+  font-size: clamp(18px, 4vw, 24px);
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.7s forwards;
+  line-height: 1.7;
+}
+
+/* Promise Ring Animation */
+.ring-container {
+  position: relative;
+  width: clamp(280px, 80vw, 400px);
+  height: clamp(280px, 80vw, 400px);
+  margin: 50px auto;
+  opacity: 0;
+  animation: fadeInScale 1.2s ease 0.9s forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(167, 139, 250, 0.3);
+  animation: ringRotate 30s linear infinite;
+}
+
+@keyframes ringRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.ring::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: var(--purple);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.ring-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  background: rgba(20, 20, 31, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.infinity {
+  font-size: clamp(60px, 15vw, 100px);
+  animation: pulse 3s ease-in-out infinite;
+  background: linear-gradient(135deg, var(--purple), var(--pink), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.1s forwards;
+}
+
+.btn {
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  color: white;
+  box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(167, 139, 250, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fadeIn 1s ease 1.5s forwards, bounce 2s ease infinite 2s;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+.scroll-indicator span {
+  display: block;
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  position: relative;
+}
+
+.scroll-indicator span::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--purple);
+  border-radius: 50%;
+  animation: scrollDot 2s ease infinite;
+}
+
+@keyframes scrollDot {
+  0% {
+    top: 10px;
+    opacity: 1;
+  }
+  100% {
+    top: 30px;
+    opacity: 0;
+  }
+}
+
+/* Section */
+.section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 8px 18px;
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--purple);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-title {
+  font-size: clamp(32px, 8vw, 52px);
+  font-weight: 700;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: clamp(16px, 4vw, 20px);
+  color: var(--text-dim);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Timeline Section */
+.timeline {
+  position: relative;
+  padding: 40px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, 
+    transparent,
+    rgba(167, 139, 250, 0.5),
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.timeline-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-content {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  max-width: 500px;
+  backdrop-filter: blur(20px);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 0 30px var(--accent-glow);
+  z-index: 1;
+}
+
+.timeline-content h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: var(--purple);
+}
+
+.timeline-content p {
+  color: var(--text-dim);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* Promise Cards Grid */
+.promises-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.promise-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 35px 28px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.promise-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.promise-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.promise-card:hover::before {
+  left: 100%;
+}
+
+.promise-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(167, 139, 250, 0.3);
+  box-shadow: 0 20px 40px rgba(167, 139, 250, 0.2);
+}
+
+.promise-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(244, 114, 182, 0.2));
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
+.promise-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.promise-card p {
+  color: var(--text-dim);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* Love Letter Section */
+.love-letter {
+  max-width: 800px;
+  margin: 60px auto;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: clamp(35px, 8vw, 60px);
+  position: relative;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.love-letter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--purple), var(--pink), transparent);
+}
+
+.letter-header {
+  text-align: center;
+  margin-bottom: 35px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.letter-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 6vw, 40px);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.letter-date {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.letter-content {
+  font-size: clamp(15px, 3.5vw, 18px);
+  line-height: 1.9;
+  color: var(--text-dim);
+  margin-bottom: 30px;
+}
+
+.letter-content p {
+  margin-bottom: 20px;
+}
+
+.letter-content p:last-child {
+  margin-bottom: 0;
+}
+
+.letter-signature {
+  text-align: right;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 4vw, 24px);
+  font-style: italic;
+  color: var(--purple);
+  margin-top: 30px;
+}
+
+/* Countdown Section */
+.countdown-section {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.1));
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 24px;
+  padding: 50px 30px;
+  text-align: center;
+  margin: 60px auto;
+  max-width: 900px;
+}
+
+.countdown-section h2 {
+  font-size: clamp(24px, 6vw, 36px);
+  margin-bottom: 15px;
+}
+
+.countdown-section p {
+  color: var(--text-dim);
+  margin-bottom: 40px;
+  font-size: clamp(14px, 3.5vw, 18px);
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.countdown-item {
+  background: var(--bg-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px 15px;
+}
+
+.countdown-number {
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.countdown-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Gallery Section */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(167, 139, 250, 0.3);
+}
+
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.1));
+}
+
+/* Final CTA Section */
+.final-cta {
+  text-align: center;
+  padding: 100px 0;
+  position: relative;
+}
+
+.cta-card {
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: clamp(40px, 8vw, 70px) clamp(30px, 6vw, 50px);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--purple), var(--pink), var(--blue), transparent);
+  background-size: 200% 100%;
+  animation: borderFlow 3s linear infinite;
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.cta-icon {
+  font-size: clamp(60px, 15vw, 80px);
+  margin-bottom: 25px;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 7vw, 44px);
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.cta-text {
+  font-size: clamp(16px, 4vw, 19px);
+  color: var(--text-dim);
+  margin-bottom: 35px;
+  line-height: 1.8;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(30px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: clamp(40px, 10vw, 60px) clamp(30px, 8vw, 50px);
+  max-width: min(550px, 92vw);
+  width: 100%;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-align: center;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7);
+}
+
+.modal.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--purple), var(--pink), transparent);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-dim);
+  font-size: 24px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+.modal-icon {
+  font-size: clamp(70px, 18vw, 100px);
+  margin-bottom: 25px;
+}
+
+.modal-title {
+  font-size: clamp(28px, 8vw, 42px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modal-text {
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.modal-signature {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 5vw, 22px);
+  font-style: italic;
+  color: var(--purple);
+  margin-top: 30px;
+}
+
+/* Confetti */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 998;
+  display: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  animation: confettiFall 4s ease-out forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer-heart {
+  font-size: 20px;
+  animation: heartBeat 1.5s ease infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(1.2); }
+  20% { transform: scale(1.1); }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: 50px;
+    margin-right: 0;
+  }
+  
+  .timeline-icon {
+    left: 20px;
+    transform: translateX(0);
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .promises-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ring-container {
+    margin: 30px auto;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+@media (hover: none) and (pointer: coarse) {
+  .btn:active {
+    transform: scale(0.95);
+  }
+  
+  .promise-card:active {
+    transform: scale(0.98);
+  }
+  
+  .gallery-item:active {
+    transform: scale(0.98);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Background elements -->
+<div class="bg-gradient"></div>
+<div class="stars" id="stars"></div>
+
+<!-- Confetti container -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <button class="modal-close" onclick="closeModal(event)">×</button>
+  <div class="modal-icon">💝</div>
+  <h2 class="modal-title">Forever Sealed</h2>
+  <p class="modal-text">
+    Today marks the beginning of our forever. Every promise I've made is now written in the stars,
+    carved in my heart, and sealed with all my love.
+  </p>
+  <p class="modal-text">
+    Thank you for choosing me. Thank you for being my home. Thank you for making every day brighter just by being in it.
+  </p>
+  <div class="modal-signature">— Yours, forever and always 💜</div>
+</div>
+
+<!-- Main container -->
+<div class="container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Promise</div>
+    <div class="date">Feb 11, 2026</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-badge">Promise Day Special</div>
+    <h1>My Forever<br>Starts With You</h1>
+    <p class="hero-subtitle">
+      Every promise I make today is a piece of my heart that I give to you, forever and always.
+    </p>
+    
+    <div class="ring-container">
+      <div class="ring"></div>
+      <div class="ring-center">
+        <div class="infinity">∞</div>
+      </div>
+    </div>
+    
+    <div class="cta-buttons">
+      <button class="btn btn-primary" onclick="celebrate()">Accept My Promises</button>
+      <button class="btn btn-secondary" onclick="scrollTo('promises')">Read Them First</button>
+    </div>
+    
+    <div class="scroll-indicator">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- Our Journey Timeline -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">How We Got Here</h2>
+      <p class="section-subtitle">
+        Every moment with you has been a step closer to forever. Here's our beautiful journey.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon">✨</div>
+        <div class="timeline-content">
+          <h3>The First Hello</h3>
+          <p>
+            The moment we first talked on Snapchat, something shifted. I didn't know it then, but you were about to become my everything.
+            That first conversation felt like coming home.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">💭</div>
+        <div class="timeline-content">
+          <h3>Falling For You</h3>
+          <p>
+            Day by day, I found myself thinking about you more. Your laugh became my favorite sound.
+            Your smile became the reason I looked forward to each day.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">💝</div>
+        <div class="timeline-content">
+          <h3>Knowing It's You</h3>
+          <p>
+            There was a moment when I just knew. You weren't just someone I liked—you were the person
+            I wanted to wake up next to for the rest of my life.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-icon">🌟</div>
+        <div class="timeline-content">
+          <h3>Building Our Forever</h3>
+          <p>
+            Now, every day with you feels like a gift. We're not just dating—we're building a life,
+            creating memories, and writing our own love story.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promises Section -->
+  <section class="section" id="promises">
+    <div class="section-header">
+      <div class="section-tag">My Commitments</div>
+      <h2 class="section-title">The Promises I Make</h2>
+      <p class="section-subtitle">
+        These aren't just words. They're the promises I'll keep every single day we're together.
+      </p>
+    </div>
+
+    <div class="promises-grid">
+      <div class="promise-card">
+        <div class="promise-icon">🤗</div>
+        <h3>I'll Always Be There</h3>
+        <p>
+          Whenever you need someone to talk to, cry with, or just sit in silence—I'll be there.
+          No matter what time, no matter what's happening in my life, you come first.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">💪</div>
+        <h3>I'll Support Your Dreams</h3>
+        <p>
+          Your goals are my goals. Your dreams are worth fighting for. I'll cheer for you,
+          push you when you need it, and celebrate every win—big or small.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">😊</div>
+        <h3>I'll Make You Laugh</h3>
+        <p>
+          Life gets hard, but I promise to find ways to make you smile every day.
+          Your happiness is my favorite thing in the world.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">🌙</div>
+        <h3>I'll Be Your Peace</h3>
+        <p>
+          When the world feels too loud, I'll be your quiet place. When everything feels like too much,
+          I'll be the calm you need. You'll always have a safe space with me.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">💖</div>
+        <h3>I'll Love You Fully</h3>
+        <p>
+          Not just the easy parts—I'll love all of you. Your quirks, your fears, your messy mornings.
+          Every piece of you is perfect to me.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">🌱</div>
+        <h3>I'll Grow With You</h3>
+        <p>
+          We'll change, and that's okay. I promise to grow with you, not apart.
+          We'll become better together, always moving forward hand in hand.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">🎯</div>
+        <h3>I'll Choose You Daily</h3>
+        <p>
+          Love is a choice, and I choose you. Every morning when I wake up, every night before I sleep,
+          I choose us. I choose our future.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">🔥</div>
+        <h3>I'll Keep The Spark Alive</h3>
+        <p>
+          I won't let us become routine. I'll plan surprises, have random dance parties ( btw only you will dance ) in the kitchen,
+          and make sure we never forget why we fell in love.
+        </p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon">🙏</div>
+        <h3>I'll Never Take You For Granted</h3>
+        <p>
+          I'll appreciate you every day. Thank you for the little things, notice your effort,
+          and remind you how lucky I am to have you.But I know you take me for granted.😔
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section class="section">
+    <div class="countdown-section">
+      <h2>We've Been Together For</h2>
+      <p>And every single day has been a blessing</p>
+      
+      <div class="countdown">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">0</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">0</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">0</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">0</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="cta-card">
+      <div class="cta-icon">💍</div>
+      <h2 class="cta-title">Will You Accept My Promises?</h2>
+      <p class="cta-text">
+        Say yes, and let's make these promises real. Say yes to building a life together.
+        Say yes to our forever.
+      </p>
+      <button class="btn btn-primary" onclick="celebrate()">
+        Yes, I Promise Too
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with <span class="footer-heart">💜</span> for the love of my life</p>
+    <p style="opacity: 0.5; font-size: 12px; margin-top: 10px;">Promise Day 2026</p>
+  </footer>
+</div>
+
+<script>
+// Create stars
+function createStars() {
+  const starsContainer = document.getElementById('stars');
+  const starCount = 100;
+  
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    starsContainer.appendChild(star);
+  }
+}
+
+// Smooth scroll
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Countdown timer (example: started dating Jan 1, 2024)
+function updateCountdown() {
+  const startDate = new Date('2024-02-17T00:00:00');
+  const now = new Date();
+  const diff = now - startDate;
+  
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
+}
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+    }
+  });
+}, observerOptions);
+
+// Observe elements
+document.querySelectorAll('.timeline-item, .promise-card').forEach(el => {
+  observer.observe(el);
+});
+
+// Celebration function
+function celebrate() {
+  // Create confetti
+  const container = document.getElementById('confettiContainer');
+  container.style.display = 'block';
+  
+  const colors = ['#a78bfa', '#f472b6', '#60a5fa', '#fbbf24'];
+  
+  for (let i = 0; i < 150; i++) {
+    setTimeout(() => {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.top = '-10px';
+      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDelay = Math.random() * 0.5 + 's';
+      confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+      container.appendChild(confetti);
+      
+      setTimeout(() => confetti.remove(), 5000);
+    }, i * 20);
+  }
+  
+  // Show modal
+  setTimeout(() => {
+    document.getElementById('modalOverlay').classList.add('show');
+    document.getElementById('modal').classList.add('show');
+  }, 800);
+  
+  // Haptic feedback
+  if ('vibrate' in navigator) {
+    navigator.vibrate([50, 30, 50, 30, 100]);
+  }
+}
+
+// Close modal
+function closeModal(event) {
+  if (event) {
+    event.stopPropagation();
+  }
+  document.getElementById('modal').classList.remove('show');
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+// Prevent double-tap zoom
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
+
+// Initialize
+createStars();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Smooth reveal on load
+window.addEventListener('load', () => {
+  document.body.style.opacity = '1';
+});
+</script>
+
+</body>
+</html>
