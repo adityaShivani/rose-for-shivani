@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kiss Day — Our Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --primary: #FF6B9D;
+  --secondary: #C44569;
+  --accent: #FFA8CC;
+  --purple: #9D8CD6;
+  --dark: #0D0D14;
+  --darker: #080810;
+  --light: #FFFFFF;
+  --muted: #9999AA;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+  background: var(--darker);
+  color: var(--light);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+.ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.6;
+  will-change: opacity;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(13, 13, 20, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  will-change: transform;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kiss-badge {
+  padding: 6px 16px;
+  background: rgba(255, 107, 157, 0.1);
+  border: 1.5px solid rgba(255, 107, 157, 0.3);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-count {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  text-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px 60px;
+  text-align: center;
+}
+
+.hero-tag {
+  padding: 8px 20px;
+  background: rgba(157, 140, 214, 0.1);
+  border: 1px solid rgba(157, 140, 214, 0.3);
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 10vw, 72px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--primary), var(--accent), var(--purple));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 8s ease infinite, fadeIn 1s ease 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-subtitle {
+  font-size: clamp(15px, 4vw, 21px);
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 50px;
+  line-height: 1.6;
+  max-width: 520px;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.7s forwards;
+}
+
+.couple-stage {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  height: 450px;
+  margin: 0 auto 50px;
+  opacity: 0;
+  animation: scaleIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.9s forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.energy-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.ring-1 {
+  width: 80%;
+  height: 80%;
+  border-color: rgba(255, 107, 157, 0.3);
+  animation: ringPulse 3s ease-out infinite;
+}
+
+.ring-2 {
+  width: 90%;
+  height: 90%;
+  border-color: rgba(157, 140, 214, 0.3);
+  animation: ringPulse 3s ease-out infinite 0.5s;
+}
+
+.ring-3 {
+  width: 100%;
+  height: 100%;
+  border-color: rgba(255, 168, 204, 0.3);
+  animation: ringPulse 3s ease-out infinite 1s;
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.couple-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.figure {
+  transition: transform 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: transform;
+}
+
+.couple-svg.kissing .figure-left {
+  transform: translateX(60px);
+}
+
+.couple-svg.kissing .figure-right {
+  transform: translateX(-60px);
+}
+
+.kiss-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.4), transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  filter: blur(40px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.couple-svg.kissing + .kiss-glow {
+  opacity: 1;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.7; }
+}
+
+.kiss-button {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 
+    0 20px 60px rgba(255, 107, 157, 0.4),
+    0 0 80px rgba(255, 107, 157, 0.2);
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.1s forwards;
+  touch-action: manipulation;
+  will-change: transform;
+}
+
+.kiss-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: rotate 4s linear infinite;
+  will-change: transform;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+.kiss-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.kiss-button:active::after {
+  width: 400px;
+  height: 400px;
+}
+
+.kiss-button:active {
+  transform: scale(0.93);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.kiss-button.active {
+  animation: btnPulse 1.5s ease;
+}
+
+@keyframes btnPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.section {
+  padding: 60px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-label {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255, 107, 157, 0.1);
+  border: 1px solid rgba(255, 107, 157, 0.3);
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 8vw, 52px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--primary), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-text {
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.stats-box {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(157, 140, 214, 0.1));
+  border: 2px solid rgba(255, 107, 157, 0.2);
+  border-radius: 28px;
+  padding: 40px 28px;
+  margin: 50px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.1), transparent 60%);
+  animation: rotateGlow 15s linear infinite;
+  will-change: transform;
+}
+
+@keyframes rotateGlow {
+  to { transform: rotate(360deg); }
+}
+
+.stats-content {
+  position: relative;
+  z-index: 1;
+}
+
+.stats-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 7vw, 42px);
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: var(--primary);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.stat-item {
+  background: rgba(13, 13, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 24px 16px;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+}
+
+.stat-item:active {
+  transform: scale(0.96);
+  border-color: rgba(255, 107, 157, 0.3);
+}
+
+.stat-number {
+  font-size: clamp(32px, 9vw, 52px);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.cards-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.card {
+  background: rgba(21, 21, 31, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 28px 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--purple));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.card:active {
+  transform: translateY(-2px) scale(0.98);
+  border-color: rgba(255, 107, 157, 0.3);
+}
+
+.card:active::before {
+  transform: scaleX(1);
+}
+
+.card-text {
+  font-size: clamp(15px, 4vw, 18px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.special-card {
+  background: rgba(21, 21, 31, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 36px 28px;
+  margin: 50px 0;
+  position: relative;
+}
+
+.special-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--purple), transparent);
+  border-radius: 24px 24px 0 0;
+}
+
+.card-message {
+  font-size: clamp(16px, 4vw, 19px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.footer {
+  text-align: center;
+  padding: 50px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-text {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.footer-heart {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.burst-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.burst-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 15px var(--primary);
+  animation: burstOut 2.5s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes burstOut {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(2);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .couple-stage {
+    height: 380px;
+    max-width: 380px;
+  }
+  
+  .kiss-button {
+    width: 150px;
+    height: 150px;
+    font-size: 15px;
+  }
+
+  .section {
+    padding: 50px 20px;
+  }
+
+  .stats-box {
+    padding: 32px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .couple-stage {
+    height: 340px;
+    max-width: 340px;
+  }
+  
+  .kiss-button {
+    width: 140px;
+    height: 140px;
+    font-size: 14px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+  }
+
+  .stat-item {
+    padding: 20px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas class="ambient-canvas" id="ambientCanvas"></canvas>
+
+<div class="burst-layer" id="burstLayer"></div>
+
+<div class="wrapper">
+  <header class="header">
+    <div class="logo">Kiss Day</div>
+    <div class="kiss-badge">
+      <span class="badge-count" id="kissCount">0</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-tag">February 13, 2026</div>
+    <h1 class="hero-title">One Sweet Kiss,<br>Many More to Come</h1>
+    <p class="hero-subtitle">
+      Our first was on your cheek.<br>
+      Someday soon, when you're ready, it'll be the real thing.
+    </p>
+
+    <div class="couple-stage" id="coupleStage">
+      <canvas class="particle-canvas" id="particleCanvas"></canvas>
+      
+      <div class="energy-ring ring-1"></div>
+      <div class="energy-ring ring-2"></div>
+      <div class="energy-ring ring-3"></div>
+
+      <svg class="couple-svg" id="coupleSvg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FF6B9D;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#FFA8CC;stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="gradRight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#9D8CD6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#C4B5FD;stop-opacity:1" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        
+        <g class="figure figure-left">
+          <ellipse cx="120" cy="140" rx="35" ry="40" fill="url(#gradLeft)" filter="url(#glow)"/>
+          <path d="M 85 130 Q 80 110 100 100 Q 120 95 140 100 Q 155 110 150 130" fill="url(#gradLeft)" opacity="0.8"/>
+          <ellipse cx="120" cy="220" rx="40" ry="65" fill="url(#gradLeft)" filter="url(#glow)"/>
+          <path d="M 140 200 Q 170 200 180 210" stroke="url(#gradLeft)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+        </g>
+        
+        <g class="figure figure-right">
+          <ellipse cx="280" cy="140" rx="35" ry="40" fill="url(#gradRight)" filter="url(#glow)"/>
+          <path d="M 245 125 Q 250 105 270 100 Q 290 100 305 110 Q 315 120 310 135" fill="url(#gradRight)" opacity="0.8"/>
+          <ellipse cx="280" cy="220" rx="40" ry="65" fill="url(#gradRight)" filter="url(#glow)"/>
+          <path d="M 260 200 Q 230 200 220 210" stroke="url(#gradRight)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+        </g>
+      </svg>
+
+      <div class="kiss-glow"></div>
+    </div>
+
+    <button class="kiss-button" id="kissButton">
+      <span class="btn-text">Send Kiss</span>
+    </button>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-label">That Moment</div>
+      <h2 class="section-title">Our First Kiss</h2>
+      <p class="section-text">
+        One gentle kiss on your cheek that meant the world to me.
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <p class="card-text">
+          You weren't ready for lips yet, and <span class="highlight">that was perfect</span>.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          Your comfort matters more than any moment.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          That soft cheek kiss was our <span class="highlight">beginning</span>.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          The way you smiled after told me everything I needed to know.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-box">
+    <div class="stats-content">
+      <h2 class="stats-title">Our Kiss Journey</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Real Cheek Kiss</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-number" id="virtualKisses">0</div>
+          <div class="stat-label">Virtual Kisses</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Future Kisses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-label">When You're Ready</div>
+      <h2 class="section-title">Our First Lip Kiss</h2>
+      <p class="section-text">
+        Someday, when you feel completely ready and comfortable, we'll share our first real kiss.
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <p class="card-text">
+          No pressure, no rush—<span class="highlight">just patience</span>.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          When the moment feels right for you, it'll be perfect for us.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          I'll wait as long as it takes for you to <span class="highlight">feel safe</span>.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          That first lip kiss will be worth every moment of waiting.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          And once we start, I'll <span class="highlight">never stop</span> kissing you.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          Morning kisses, goodnight kisses, random just-because kisses.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="special-card">
+    <p class="card-message">
+      These virtual kisses? They're practice for the real thing.
+    </p>
+    <p class="card-message">
+      Every tap is me <span class="highlight">dreaming about</span> the day you're ready.
+    </p>
+    <p class="card-message">
+      Until then, I'm here, patient and waiting, making sure you always feel cherished.
+    </p>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-label">Someday Soon</div>
+      <h2 class="section-title">All The Kisses Ahead</h2>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <p class="card-text">
+          That first <span class="highlight">nervous</span> lip kiss that changes everything.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          Sweet goodnight kisses before we fall asleep together.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          Surprise kisses when you're <span class="highlight">least expecting it</span>.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          Deep kisses that say what words can't.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          Playful kisses that make us both <span class="highlight">laugh</span>.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="card-text">
+          A lifetime of kisses, each one as special as the first.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="special-card">
+    <p class="card-message">
+      I promise to never push you.
+    </p>
+    <p class="card-message">
+      Your comfort and <span class="highlight">happiness</span> come first, always.
+    </p>
+    <p class="card-message">
+      When you're ready for our first real kiss, I'll be right here waiting.
+    </p>
+  </div>
+
+  <footer class="footer">
+    <p class="footer-text">
+      Made with <span class="footer-heart">patience and love</span>
+    </p>
+    <p class="footer-text" style="opacity: 0.4; font-size: 12px; margin-top: 8px;">
+      Kiss Day 2026 • Waiting For You
+    </p>
+  </footer>
+</div>
+
+<script>
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const targetFPS = isMobile ? 30 : 60;
+const frameInterval = 1000 / targetFPS;
+
+const ambientCanvas = document.getElementById('ambientCanvas');
+const ambientCtx = ambientCanvas.getContext('2d', { alpha: true, desynchronized: true });
+
+function resizeAmbient() {
+  ambientCanvas.width = window.innerWidth;
+  ambientCanvas.height = window.innerHeight;
+}
+resizeAmbient();
+
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(resizeAmbient, 150);
+});
+
+class AmbientParticle {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * ambientCanvas.width;
+    this.y = Math.random() * ambientCanvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.3 + 0.1;
+    this.hue = Math.random() > 0.5 ? 340 : 270;
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.x < 0 || this.x > ambientCanvas.width || 
+        this.y < 0 || this.y > ambientCanvas.height) {
+      this.reset();
+    }
+  }
+
+  draw() {
+    ambientCtx.globalAlpha = this.opacity;
+    ambientCtx.fillStyle = `hsl(${this.hue}, 70%, 65%)`;
+    ambientCtx.shadowBlur = 15;
+    ambientCtx.shadowColor = `hsl(${this.hue}, 70%, 65%)`;
+    ambientCtx.beginPath();
+    ambientCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ambientCtx.fill();
+    ambientCtx.shadowBlur = 0;
+  }
+}
+
+const ambientParticleCount = isMobile ? 25 : 50;
+const ambientParticles = [];
+for (let i = 0; i < ambientParticleCount; i++) {
+  ambientParticles.push(new AmbientParticle());
+}
+
+let lastAmbientFrame = 0;
+function animateAmbient(timestamp) {
+  if (timestamp - lastAmbientFrame >= frameInterval) {
+    ambientCtx.fillStyle = 'rgba(8, 8, 16, 0.05)';
+    ambientCtx.fillRect(0, 0, ambientCanvas.width, ambientCanvas.height);
+
+    ambientParticles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    ambientCtx.globalAlpha = 1;
+    lastAmbientFrame = timestamp;
+  }
+  requestAnimationFrame(animateAmbient);
+}
+requestAnimationFrame(animateAmbient);
+
+const particleCanvas = document.getElementById('particleCanvas');
+const particleCtx = particleCanvas.getContext('2d', { alpha: true, desynchronized: true });
+
+function resizeParticle() {
+  const container = particleCanvas.parentElement;
+  particleCanvas.width = container.offsetWidth;
+  particleCanvas.height = container.offsetHeight;
+}
+resizeParticle();
+
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(resizeParticle, 150);
+});
+
+class StageParticle {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.angle = Math.random() * Math.PI * 2;
+    this.radius = Math.random() * 100 + 50;
+    this.x = particleCanvas.width / 2 + Math.cos(this.angle) * this.radius;
+    this.y = particleCanvas.height / 2 + Math.sin(this.angle) * this.radius;
+    this.size = Math.random() * 3 + 1;
+    this.speed = Math.random() * 0.01 + 0.005;
+    this.opacity = Math.random() * 0.5 + 0.2;
+    this.hue = Math.random() > 0.5 ? 340 : 270;
+  }
+
+  update() {
+    this.angle += this.speed;
+    this.x = particleCanvas.width / 2 + Math.cos(this.angle) * this.radius;
+    this.y = particleCanvas.height / 2 + Math.sin(this.angle) * this.radius;
+  }
+
+  draw() {
+    particleCtx.globalAlpha = this.opacity;
+    particleCtx.fillStyle = `hsl(${this.hue}, 70%, 65%)`;
+    particleCtx.shadowBlur = 10;
+    particleCtx.shadowColor = `hsl(${this.hue}, 70%, 65%)`;
+    particleCtx.beginPath();
+    particleCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    particleCtx.fill();
+    particleCtx.shadowBlur = 0;
+  }
+}
+
+const stageParticleCount = isMobile ? 20 : 30;
+const stageParticles = [];
+for (let i = 0; i < stageParticleCount; i++) {
+  stageParticles.push(new StageParticle());
+}
+
+let lastStageFrame = 0;
+function animateStage(timestamp) {
+  if (timestamp - lastStageFrame >= frameInterval) {
+    particleCtx.fillStyle = 'rgba(13, 13, 20, 0.1)';
+    particleCtx.fillRect(0, 0, particleCanvas.width, particleCanvas.height);
+
+    stageParticles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    particleCtx.globalAlpha = 1;
+    lastStageFrame = timestamp;
+  }
+  requestAnimationFrame(animateStage);
+}
+requestAnimationFrame(animateStage);
+
+let virtualKissCount = parseInt(localStorage.getItem('virtualKissCount') || '0');
+document.getElementById('kissCount').textContent = virtualKissCount;
+document.getElementById('virtualKisses').textContent = virtualKissCount;
+
+const kissButton = document.getElementById('kissButton');
+const coupleSvg = document.getElementById('coupleSvg');
+const coupleStage = document.getElementById('coupleStage');
+const burstLayer = document.getElementById('burstLayer');
+
+kissButton.addEventListener('click', () => {
+  coupleStage.scrollIntoView({ 
+    behavior: 'smooth', 
+    block: 'center',
+    inline: 'center'
+  });
+
+  setTimeout(() => {
+    virtualKissCount++;
+    document.getElementById('kissCount').textContent = virtualKissCount;
+    document.getElementById('virtualKisses').textContent = virtualKissCount;
+    localStorage.setItem('virtualKissCount', virtualKissCount);
+
+    kissButton.classList.add('active');
+    setTimeout(() => kissButton.classList.remove('active'), 1500);
+
+    coupleSvg.classList.add('kissing');
+
+    setTimeout(() => {
+      createBurst();
+    }, 1000);
+
+    setTimeout(() => {
+      coupleSvg.classList.remove('kissing');
+    }, 3000);
+
+    if ('vibrate' in navigator) {
+      navigator.vibrate([40, 30, 40, 30, 100]);
+    }
+  }, 400);
+});
+
+function createBurst() {
+  const rect = kissButton.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  const burstCount = isMobile ? 20 : 30;
+  
+  for (let i = 0; i < burstCount; i++) {
+    setTimeout(() => {
+      const particle = document.createElement('div');
+      particle.className = 'burst-particle';
+
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 100 + Math.random() * 150;
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance;
+
+      particle.style.left = centerX + 'px';
+      particle.style.top = centerY + 'px';
+      particle.style.setProperty('--tx', tx + 'px');
+      particle.style.setProperty('--ty', ty + 'px');
+
+      burstLayer.appendChild(particle);
+
+      setTimeout(() => particle.remove(), 2500);
+    }, i * (isMobile ? 40 : 30));
+  }
+}
+
+document.addEventListener('touchstart', () => {}, { passive: true });
+document.addEventListener('touchmove', () => {}, { passive: true });
+</script>
+
+</body>
+</html>
