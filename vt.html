@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Our Journey — Every Memory with You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --rose: #FF6B9D;
+  --violet: #8B5CF6;
+  --gold: #F59E0B;
+  --coral: #FF8B94;
+  --lavender: #C8B6FF;
+  --night: #0A0A0F;
+  --midnight: #05050A;
+  --white: #FFFFFF;
+  --grey: #A0A0B0;
+  --light-rose: #FFE5EE;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: var(--midnight);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+}
+
+/* Optimized starfield */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+}
+
+.star.twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right, white, transparent);
+  animation: shoot 3s ease-out infinite;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+    width: 100px;
+  }
+  100% {
+    transform: translateX(-1000px) translateY(500px);
+    opacity: 0;
+    width: 50px;
+  }
+}
+
+/* Gradient overlay */
+.gradient-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 2s ease;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.15), transparent 50%);
+  will-change: opacity;
+}
+
+/* Content wrapper */
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Scene styling */
+.scene {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+  position: relative;
+  will-change: transform, opacity;
+}
+
+.scene.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typography */
+.scene-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(40px, 10vw, 80px);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--rose), var(--lavender), var(--violet));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 8s ease infinite;
+  letter-spacing: -1px;
+}
+
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.scene-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(22px, 5vw, 36px);
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 32px;
+  color: var(--light-rose);
+  letter-spacing: 0.5px;
+}
+
+.scene-text {
+  font-size: clamp(17px, 4vw, 21px);
+  line-height: 1.9;
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 32px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.scene-date {
+  font-size: clamp(13px, 3vw, 15px);
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 8px 24px;
+  border: 2px solid var(--gold);
+  border-radius: 50px;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.6);
+  }
+}
+
+/* Intro scene */
+#intro {
+  position: relative;
+}
+
+.intro-text {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(28px, 7vw, 56px);
+  font-weight: 400;
+  text-align: center;
+  opacity: 0;
+  animation: fade-up 2s ease 1s forwards;
+  letter-spacing: 1px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fade-up 1s ease 3s forwards;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-text {
+  font-size: 13px;
+  color: var(--grey);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--rose), transparent);
+  margin: 0 auto;
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(15px); opacity: 0.5; }
+}
+
+/* Connection visualization */
+.connection-visual {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+  margin: 60px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connection-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.connection-person {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--rose), var(--coral));
+  box-shadow: 0 0 60px var(--rose);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: person-pulse 3s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.connection-person:hover {
+  transform: translateY(-50%) scale(1.2);
+  box-shadow: 0 0 100px var(--rose);
+}
+
+.person-left {
+  left: 10%;
+}
+
+.person-right {
+  right: 10%;
+  background: linear-gradient(135deg, var(--violet), var(--lavender));
+  box-shadow: 0 0 60px var(--violet);
+  animation-delay: 0.5s;
+}
+
+.person-right:hover {
+  box-shadow: 0 0 100px var(--violet);
+}
+
+@keyframes person-pulse {
+  0%, 100% { 
+    transform: translateY(-50%) scale(1);
+  }
+  50% { 
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
+/* Optimized timeline */
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--rose), var(--violet));
+  transform: translateX(-50%);
+  box-shadow: 0 0 20px var(--rose);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 100px;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 1s ease;
+  will-change: transform, opacity;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: auto;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-right: auto;
+}
+
+.timeline-content {
+  width: 45%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-content:hover {
+  transform: translateY(-15px) scale(1.03);
+  border-color: var(--rose);
+  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--rose), var(--violet));
+  border-radius: 24px 24px 0 0;
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.timeline-content:hover::before {
+  transform: scaleX(1);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  background: var(--rose);
+  border: 4px solid var(--midnight);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 30px var(--rose);
+  z-index: 10;
+  animation: dot-pulse 2s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.timeline-dot:hover {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+@keyframes dot-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.timeline-month {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.timeline-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--light-rose);
+  letter-spacing: -0.5px;
+}
+
+.timeline-description {
+  font-size: clamp(16px, 3.5vw, 18px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.3px;
+}
+
+/* 3D Heart */
+.heart-3d-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 60px auto;
+  perspective: 1000px;
+}
+
+.heart-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate-3d 10s linear infinite;
+  cursor: pointer;
+}
+
+.heart-3d:hover {
+  animation-play-state: paused;
+}
+
+@keyframes rotate-3d {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+.heart-side {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, var(--rose), var(--coral));
+  border-radius: 50%;
+  box-shadow: 0 0 80px var(--rose);
+}
+
+/* Ripple effect */
+.ripple-scene {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 60px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ripple-center {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(139, 92, 246, 0.3));
+  box-shadow: 0 0 60px var(--rose);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'EB Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  z-index: 2;
+  animation: center-pulse 2s ease-in-out infinite;
+  transition: all 0.5s ease;
+}
+
+.ripple-center:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 100px var(--rose);
+}
+
+@keyframes center-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.ripple-wave {
+  position: absolute;
+  border: 3px solid var(--rose);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ripple-expand 4s ease-out infinite;
+}
+
+@keyframes ripple-expand {
+  0% {
+    width: 120px;
+    height: 120px;
+    opacity: 1;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
+
+.ripple-wave:nth-child(2) { animation-delay: 1s; border-color: var(--violet); }
+.ripple-wave:nth-child(3) { animation-delay: 2s; border-color: var(--gold); }
+
+/* Enhanced envelope button */
+.envelope-scene {
+  margin: 80px auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+.envelope-button {
+  display: inline-block;
+  padding: 32px 64px;
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--rose), var(--violet));
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 60px rgba(255, 107, 157, 0.5),
+    0 0 40px rgba(139, 92, 246, 0.3),
+    inset 0 2px 20px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: button-float 3s ease-in-out infinite;
+}
+
+@keyframes button-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+.envelope-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent 30%
+  );
+  animation: button-rotate 3s linear infinite;
+}
+
+@keyframes button-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.envelope-button:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 
+    0 30px 80px rgba(255, 107, 157, 0.7),
+    0 0 60px rgba(139, 92, 246, 0.5),
+    inset 0 2px 30px rgba(255, 255, 255, 0.3);
+}
+
+.envelope-button:active {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.envelope-button-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.envelope-icon {
+  font-size: 32px;
+  animation: icon-bounce 2s ease-in-out infinite;
+}
+
+@keyframes icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Letter modal */
+.letter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.97);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.letter-modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.letter-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 32px;
+  padding: 70px 50px;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  margin: 20px;
+  box-shadow: 
+    0 50px 120px rgba(255, 107, 157, 0.4),
+    inset 0 0 80px rgba(255, 107, 157, 0.05);
+  transform: scale(0.8);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+.letter-modal.show .letter-content {
+  transform: scale(1);
+}
+
+.letter-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.letter-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.letter-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--rose), var(--violet));
+  border-radius: 10px;
+}
+
+.close-letter {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.close-letter:hover {
+  background: rgba(255, 107, 157, 0.4);
+  border-color: var(--rose);
+  transform: rotate(180deg) scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 107, 157, 0.6);
+}
+
+.letter-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.letter-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(32px, 8vw, 52px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--rose), var(--lavender), var(--violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+.letter-body {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(17px, 4vw, 19px);
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.4px;
+}
+
+.letter-body p {
+  margin-bottom: 28px;
+}
+
+.letter-signature {
+  text-align: right;
+  margin-top: 60px;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(28px, 6vw, 40px);
+  color: var(--rose);
+  animation: signature-glow 2s ease-in-out infinite;
+}
+
+@keyframes signature-glow {
+  0%, 100% {
+    text-shadow: 0 0 30px rgba(255, 107, 157, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 50px rgba(255, 107, 157, 0.9);
+  }
+}
+
+/* Final message */
+.final-message {
+  text-align: center;
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 80px 48px;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(139, 92, 246, 0.15));
+  border: 3px solid rgba(255, 107, 157, 0.4);
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 40px 100px rgba(255, 107, 157, 0.3),
+    inset 0 0 80px rgba(255, 107, 157, 0.1);
+}
+
+.final-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(36px, 9vw, 68px);
+  font-weight: 700;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, var(--rose), var(--light-rose), var(--violet));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 8s ease infinite;
+  letter-spacing: -1px;
+}
+
+.final-text {
+  font-size: clamp(19px, 4.5vw, 24px);
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 24px;
+  letter-spacing: 0.4px;
+}
+
+/* OYO Image Section */
+.oyo-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.oyo-container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.oyo-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(32px, 8vw, 60px);
+  font-weight: 700;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, var(--rose), var(--lavender));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 8s ease infinite;
+}
+
+.oyo-text {
+  font-size: clamp(18px, 4.5vw, 24px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 48px;
+  letter-spacing: 0.4px;
+}
+
+.oyo-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 
+    0 40px 100px rgba(255, 107, 157, 0.4),
+    0 0 80px rgba(139, 92, 246, 0.3);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.oyo-image-wrapper:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 50px 120px rgba(255, 107, 157, 0.6),
+    0 0 100px rgba(139, 92, 246, 0.5);
+}
+
+.oyo-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 32px;
+}
+
+.oyo-question {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(24px, 6vw, 40px);
+  font-weight: 600;
+  color: var(--light-rose);
+  margin-top: 40px;
+  animation: question-pulse 2s ease-in-out infinite;
+}
+
+@keyframes question-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    color: var(--light-rose);
+  }
+  50% { 
+    transform: scale(1.05);
+    color: var(--rose);
+  }
+}
+
+/* OYO Yes Button */
+.oyo-yes-button {
+  display: inline-block;
+  padding: 20px 60px;
+  margin-top: 40px;
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  background: linear-gradient(135deg, #FF1654, #FF6B9D, #8B5CF6);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 60px rgba(255, 22, 84, 0.6),
+    0 0 40px rgba(139, 92, 246, 0.4),
+    inset 0 2px 20px rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: button-gradient 3s ease infinite, button-shake 4s ease-in-out infinite;
+}
+
+@keyframes button-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes button-shake {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: rotate(-2deg); }
+  20%, 40%, 60%, 80% { transform: rotate(2deg); }
+}
+
+.oyo-yes-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent 30%
+  );
+  animation: button-spin 2s linear infinite;
+}
+
+@keyframes button-spin {
+  to { transform: rotate(360deg); }
+}
+
+.oyo-yes-button:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 
+    0 30px 80px rgba(255, 22, 84, 0.8),
+    0 0 60px rgba(139, 92, 246, 0.6),
+    inset 0 2px 30px rgba(255, 255, 255, 0.4);
+}
+
+.oyo-yes-button:active {
+  transform: scale(1.05) translateY(-3px);
+}
+
+.oyo-yes-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* OYO Response Modal */
+.oyo-response-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.oyo-response-modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.oyo-response-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(255, 22, 84, 0.2), transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.2), transparent 50%);
+  animation: modal-pulse 8s ease infinite;
+}
+
+@keyframes modal-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.oyo-response-content {
+  background: linear-gradient(135deg, rgba(255, 22, 84, 0.15), rgba(139, 92, 246, 0.15));
+  border: 3px solid rgba(255, 22, 84, 0.5);
+  border-radius: 40px;
+  padding: 80px 60px;
+  max-width: 800px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 
+    0 50px 120px rgba(255, 22, 84, 0.5),
+    inset 0 0 80px rgba(255, 22, 84, 0.1);
+  transform: scale(0.7) rotateX(30deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  animation: float-modal 3s ease-in-out infinite;
+}
+
+@keyframes float-modal {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.02) translateY(-10px); }
+}
+
+.oyo-response-modal.show .oyo-response-content {
+  transform: scale(1) rotateX(0deg);
+}
+
+.oyo-response-emoji {
+  font-size: clamp(60px, 15vw, 100px);
+  margin-bottom: 32px;
+  animation: emoji-spin 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes emoji-spin {
+  0%, 100% { transform: rotate(-10deg) scale(1); }
+  25% { transform: rotate(10deg) scale(1.1); }
+  50% { transform: rotate(-10deg) scale(1); }
+  75% { transform: rotate(10deg) scale(1.1); }
+}
+
+.oyo-response-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(36px, 9vw, 64px);
+  font-weight: 800;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #FF1654, #FF6B9D, #8B5CF6);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 3s ease infinite;
+  letter-spacing: -1px;
+}
+
+.oyo-response-text {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(20px, 5vw, 28px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.oyo-response-subtext {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(18px, 4.5vw, 24px);
+  color: var(--light-rose);
+  margin-top: 32px;
+  font-style: italic;
+}
+
+.close-oyo-response {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: rgba(255, 22, 84, 0.3);
+  color: white;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.close-oyo-response:hover {
+  background: rgba(255, 22, 84, 0.6);
+  border-color: var(--rose);
+  transform: rotate(180deg) scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 22, 84, 0.8);
+}
+
+/* Confetti animation */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--rose);
+  position: absolute;
+  animation: confetti-fall 3s ease-out forwards;
+  z-index: 10002;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotateZ(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotateZ(720deg);
+    opacity: 0;
+  }
+}
+
+/* Floating hearts */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.floating-hearts.active {
+  opacity: 1;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 28px;
+  animation: float-heart 12s ease-in infinite;
+  filter: drop-shadow(0 0 10px var(--rose));
+}
+
+@keyframes float-heart {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(var(--float-x)) rotate(720deg) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .scene {
+    padding: 60px 20px;
+  }
+  
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .timeline-content {
+    width: calc(100% - 80px);
+    margin-left: 80px !important;
+    padding: 32px 24px;
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-right: 0 !important;
+  }
+  
+  .timeline-dot {
+    left: 30px;
+  }
+  
+  .connection-person {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+  
+  .heart-3d-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .letter-content {
+    padding: 50px 30px;
+  }
+  
+  .envelope-button {
+    padding: 24px 48px;
+    font-size: clamp(18px, 5vw, 24px);
+  }
+  
+  .oyo-image-wrapper {
+    max-width: 100%;
+  }
+  
+  .connection-visual {
+    height: 300px;
+  }
+  
+  .ripple-scene {
+    height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Music Control Button */
+.music-control {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10005;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.9), rgba(139, 92, 246, 0.9));
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(255, 107, 157, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: music-btn-pulse 2s ease-in-out infinite;
+}
+
+@keyframes music-btn-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 32px rgba(255, 107, 157, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(255, 107, 157, 0.6), inset 0 0 25px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.music-control:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(255, 107, 157, 0.6), inset 0 0 25px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.music-control:active {
+  transform: translateY(0) scale(1);
+}
+
+.music-icon {
+  font-size: 20px;
+  animation: music-icon-bounce 1s ease-in-out infinite;
+}
+
+@keyframes music-icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.music-control.playing .music-icon {
+  animation: music-icon-spin 2s linear infinite;
+}
+
+@keyframes music-icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.music-text {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .music-control {
+    top: 10px;
+    right: 10px;
+    padding: 10px 16px;
+  }
+  
+  .music-icon {
+    font-size: 18px;
+  }
+  
+  .music-text {
+    font-size: 12px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Music Control Button -->
+<button class="music-control" id="musicToggleBtn" onclick="toggleMusic()" aria-label="Toggle Music">
+  <span class="music-icon" id="musicIcon">🔇</span>
+  <span class="music-text" id="musicText">Tap to Play Music</span>
+</button>
+
+<!-- Starfield -->
+<div class="starfield" id="starfield"></div>
+
+<!-- Gradient overlay -->
+<div class="gradient-overlay" id="gradientOverlay"></div>
+
+<!-- Floating hearts -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<!-- Content -->
+<div class="content">
+  
+  <!-- Scene 1: Beginning -->
+  <section class="scene visible" id="intro">
+    <p class="intro-text">Sometimes the most beautiful love stories begin with a simple message...</p>
+    <div class="scroll-indicator" onclick="document.getElementById('connection').scrollIntoView({behavior: 'smooth'})">
+      <p class="scroll-text">Our Journey</p>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Scene 2: First Connection -->
+  <section class="scene" id="connection">
+    <p class="scene-date">Where It All Began</p>
+    <h2 class="scene-title">The First Hello</h2>
+    <p class="scene-text">
+      Snapchat brought us together. Two souls, complete strangers, connected by fate. That first conversation felt so easy, so natural. I had no idea that the person on the other side of that screen would become the reason my heart beats faster.
+    </p>
+    <div class="connection-visual">
+      <canvas class="connection-canvas" id="connectionCanvas"></canvas>
+      <div class="connection-person person-left">♡</div>
+      <div class="connection-person person-right">♡</div>
+    </div>
+    <p class="scene-text">
+      Messages turned into calls. Calls turned into whole nights of talking. Do you remember the sound of peacocks in the background? That beautiful, nostalgic sound that made our late-night conversations feel like a dream. We talked until the sun came up, sharing pieces of our souls. Every word you spoke made me want to hear more. Every laugh made me fall a little deeper.
+    </p>
+  </section>
+
+  <!-- Scene 3: Growing Timeline -->
+  <section class="scene" id="growing">
+    <h2 class="scene-title">The Journey of Us</h2>
+    <p class="scene-subtitle">Every moment, every tear, every smile brought us here</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-month">The First Silence</div>
+          <h3 class="timeline-title">When Distance Found Us</h3>
+          <p class="timeline-description">
+            One month. Your NEET exam needed your focus, and I understood. But God, I missed you. Every day felt incomplete without hearing your voice. Then came your result day. My phone lit up with your name, but then... darkness. You blocked me. Just for a minute, but it felt like forever. "Sorry me" - two words that broke and healed my heart at once. You felt bad, you said. You panicked. In that moment, I realized how deeply you cared, even when you were scared.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-month">Love in Whispers</div>
+          <h3 class="timeline-title">When We Found Our Way</h3>
+          <p class="timeline-description">
+            You came back, but with walls built around you. "I'm taking a drop year. I can't take risks." Your words hurt, but I understood your dreams mattered too. So we talked in small moments. Little conversations that felt like stolen treasures. But we found our own language of love. Remember our nights listening to songs together? Typing lyrics to each other, line by line? People might call it silly, but to me, it was poetry. It was us creating our own world where nothing else mattered. That was our innocent, pure, deep love.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-month">Growing Pains</div>
+          <h3 class="timeline-title">When Love Was Tested</h3>
+          <p class="timeline-description">
+            We fought. Sometimes you disappeared for two, even three weeks. No messages. No calls. Nothing. I complained because I missed you desperately. You got irritated because you were struggling too. But every fight taught us something. Every silence made our reunion sweeter. We were learning what it means to love someone - truly love them - even when it's hard. Even when we're both hurting. Even when we don't understand each other. We were growing, together.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scene 4: Diwali - First Meeting -->
+  <section class="scene" id="diwali">
+    <p class="scene-date">Diwali 2024</p>
+    <h2 class="scene-title">The Moment My Heart Knew</h2>
+    <div class="heart-3d-container">
+      <div class="heart-3d">
+        <div class="heart-side"></div>
+      </div>
+    </div>
+    <p class="scene-text">
+      Diwali brought magic I never expected. We were both going home, and when I discovered our trains shared the same route, my world stopped. We could actually meet. See each other. Be real, not just voices in the night. But I was terrified. My hands shook. My legs felt weak. This was my first time meeting a girl like this - someone who meant everything to me.
+    </p>
+    <p class="scene-text">
+      Then panic hit me: I can't meet you empty-handed. What kind of person would I be? So I ran. Literally ran out of the station like a madman, searching for something - anything - to give you. A chocolate. It was simple, maybe even silly, but it was all I could manage in those frantic moments. I ran back, breathless, heart pounding. And then... there you were. Two minutes that felt like an eternity. My legs wouldn't stop shaking. I tried to act normal, but inside I was a mess of nerves and joy.
+    </p>
+    <p class="scene-text">
+      Then you left, and I stood there, replaying those two minutes in my mind over and over. But the magic wasn't over. On Diwali day, your mother's phone rang with your voice. You called me from home, just to wish me happy Diwali. Do you know what that meant to me? In that moment, I felt like I was part of your world. Like I mattered enough for you to find a way. We both felt it then - this connection was deeper than we ever imagined. We weren't just talking anymore. We were becoming something real.
+    </p>
+  </section>
+
+  <!-- Scene 5: The Proposal -->
+  <section class="scene" id="confession">
+    <p class="scene-date">February 14, 2025</p>
+    <h2 class="scene-title">When You Chose Me</h2>
+    
+    <div class="ripple-scene">
+      <div class="ripple-wave"></div>
+      <div class="ripple-wave"></div>
+      <div class="ripple-wave"></div>
+      <div class="ripple-center">Forever</div>
+    </div>
+    
+    <p class="scene-text">
+      Valentine's Day 2025. While the world celebrated love, you gave me a reason to believe in it. You proposed to me. Your words made everything real, everything official. My heart didn't just skip a beat - it found its home. That day is written in golden letters in my memory. We both knew we had feelings, but hearing you say it... that changed everything.
+    </p>
+    <p class="scene-text">
+      Then came February 23rd. We planned to meet properly, not just a rushed two minutes at a station. And that day... that day was pure magic. Every moment is burned into my memory. The way you smiled. The way we talked. The way being near you felt like coming home. I remember the air we breathed, the words we spoke, the silences we shared. It wasn't just the best day - it was the day my life truly began.
+    </p>
+  </section>
+
+  <!-- Scene 6: After Meeting -->
+  <section class="scene" id="return">
+    <h2 class="scene-title">When Everything Felt Right</h2>
+    <p class="scene-subtitle">The beautiful days we cherished</p>
+    
+    <div class="connection-visual">
+      <canvas class="connection-canvas" id="returnCanvas"></canvas>
+      <div class="connection-person person-left">♡</div>
+      <div class="connection-person person-right">♡</div>
+    </div>
+    
+    <p class="scene-text">
+      After February 23rd, something shifted. We weren't holding back anymore. Every day became a celebration of us. We talked more, laughed more, shared more. You were preparing for your NEET exam, but you still found time for me. Your voice became my favorite sound. Your messages became my daily happiness. Everything felt perfect. Everything felt like it was falling into place exactly as it should.
+    </p>
+  </section>
+
+  <!-- Scene 7: The Dark Days -->
+  <section class="scene" id="silence">
+    <h2 class="scene-title">When Darkness Fell</h2>
+    <p class="scene-subtitle">May - July 2025: The longest three months of my life</p>
+    
+    <div class="ripple-scene">
+      <div class="ripple-wave"></div>
+      <div class="ripple-wave"></div>
+      <div class="ripple-wave"></div>
+      <div class="ripple-center">Silence</div>
+    </div>
+    
+    <p class="scene-text">
+      You went home. And then... nothing. You blocked me. Complete silence. At first, I waited. I told myself you needed space, you needed time. "She'll come back," I whispered to myself every night. But days turned into weeks. Weeks turned into months. May passed. June passed. July passed. Three entire months without a word. Without knowing if you were okay. Without knowing if we were okay.
+    </p>
+    <p class="scene-text">
+      Every morning I woke up hoping today would be the day you'd message. Every night I went to bed with a heavy heart. The pain was unbearable. It wasn't just missing you - it was not knowing. Were you thinking about me? Did you still care? Or was I just a chapter you closed and walked away from?
+    </p>
+    <p class="scene-text">
+      By August, I couldn't take it anymore. My patience broke. My heart couldn't bear another day of not knowing. So I reached out. I texted you, my hands shaking, my heart in my throat. And when you replied... you said you wanted to end everything. You wanted to break up. Those words destroyed me. I begged. For two hours, I poured my heart out. I told you everything - how much I loved you, how much I needed you, how empty my world felt without you. But you said no. You were done. And then... you hung up.
+    </p>
+    <p class="scene-text">
+      I sat there, staring at my phone, feeling like my entire world had just collapsed. It was over. I lost you. The person I loved more than anything was gone. Ten minutes passed - the longest ten minutes of my life. And then... my phone rang. It was you. You called back. Your voice was different, softer. And you said the words that brought me back to life: "Let's try again." You chose us. You chose me. You chose love. In that moment, everything made sense again.
+    </p>
+  </section>
+
+  <!-- Scene 8: Today -->
+  <section class="scene" id="now">
+    <h2 class="scene-title">Today - One Year of Us</h2>
+    <p class="scene-subtitle">February 14, 2026</p>
+    
+    <div class="heart-3d-container">
+      <div class="heart-3d">
+        <div class="heart-side"></div>
+      </div>
+    </div>
+    
+    <p class="scene-text">
+      One year ago today, you proposed to me and changed my life forever. One year of love, tears, fights, silence, reunions, and growth. Look at everything we've been through. The distance. The doubts. The darkness. The pain. Yet here we are, still together, still choosing each other.
+    </p>
+    <p class="scene-text">
+      Our love isn't a fairy tale. It's real, messy, complicated. We fight. You disappear sometimes. I complain. You get frustrated. We hurt each other without meaning to. But that's what makes it real. That's what makes it worth fighting for. Because through everything - every mistake, every tear, every moment of doubt - we keep coming back to each other.
+    </p>
+    <p class="scene-text">
+      We survived three months of silence. We survived a breakup that lasted ten minutes before love pulled us back. We survived every storm because what we have is stronger than any challenge life throws at us. This isn't just love - this is choosing each other, every single day, even when it's hard. Especially when it's hard.
+    </p>
+    <p class="scene-text">
+      Today, I want to celebrate us. Every beautiful moment. Every painful lesson. Every time we broke and came back stronger. Because that's our story. And I wouldn't change a single moment of it.
+    </p>
+  </section>
+
+  <!-- Scene 9: Letter -->
+  <section class="scene" id="letter-scene">
+    <h2 class="scene-title">Words From My Soul</h2>
+    <p class="scene-text" style="margin-bottom: 60px;">
+      Some feelings are too deep for spoken words. So I wrote them down for you. Every emotion, every memory, every piece of my heart.
+    </p>
+    <div class="envelope-scene">
+      <button class="envelope-button" id="envelopeButton">
+        <span class="envelope-button-text">
+          <span class="envelope-icon">♡</span>
+          <span>Open My Heart</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Final Scene -->
+  <section class="scene" id="final">
+    <div class="final-message">
+      <h2 class="final-title">Forever Starts Today</h2>
+      <p class="final-text">
+        From a random Snapchat message to nights filled with peacock sounds and whispered dreams. From shaking legs and a chocolate at a train station to the most beautiful February 23rd. From three months of unbearable silence to that life-changing phone call.
+      </p>
+      <p class="final-text">
+        Every moment of our story - the beautiful and the painful - has led us here. To this day. To this love. To this unbreakable bond we've built through tears, fights, doubts, and endless faith in each other.
+      </p>
+      <p class="final-text">
+        You're not just my girlfriend. You're my safe place. My home. The person who knows all my flaws and loves me anyway. The one who came back when leaving was easier. The one who chose us when giving up made more sense.
+      </p>
+      <p class="final-text">
+        Thank you for proposing to me a year ago. Thank you for that call back after ten minutes. Thank you for every moment, even the ones that hurt. Thank you for being mine. I love you today, tomorrow, and for all the tomorrows we'll share. Happy Anniversary, my love. Here's to forever.
+      </p>
+    </div>
+  </section>
+
+  <!-- OYO Section -->
+  <section class="scene oyo-section" id="oyo">
+    <div class="oyo-container">
+      <h2 class="oyo-title">One More Thing...</h2>
+      <p class="oyo-text">
+        Remember how perfect February 23rd felt? How every moment together felt like a dream? Well... I've been thinking about creating more moments like that with you.
+      </p>
+      <div class="oyo-image-wrapper">
+        <img src="/photos/1.jpg" alt="Us" class="oyo-image">
+      </div>
+      <p class="oyo-question">
+        So... want to make more beautiful memories? Just you, me, and maybe an OYO room where we can be completely ourselves? 😏
+      </p>
+      <p class="oyo-text" style="margin-top: 32px; font-size: clamp(16px, 4vw, 20px); color: var(--light-rose);">
+        Just kidding... unless you want to? 💕
+      </p>
+      <button class="oyo-yes-button" id="oyoYesButton">
+        <span class="oyo-yes-text">YES! 💕</span>
+      </button>
+    </div>
+  </section>
+
+</div>
+
+<!-- OYO Response Modal -->
+<div class="oyo-response-modal" id="oyoResponseModal">
+  <div class="close-oyo-response" id="closeOyoResponse">×</div>
+  <div class="oyo-response-content">
+    <div class="oyo-response-emoji">😏💕</div>
+    <h2 class="oyo-response-title">I KNEW YOU'D SAY YES!</h2>
+    <p class="oyo-response-text">
+      See? Your heart wanted this too! You can't hide your feelings from me anymore.
+    </p>
+    <p class="oyo-response-text">
+      Just like February 23rd, we'll create more memories that will last forever. More moments where it's just us against the world.
+    </p>
+    <p class="oyo-response-subtext">
+      Let's make this happen and show the world what real love looks like 🌟
+    </p>
+  </div>
+</div>
+
+<!-- Letter Modal -->
+<div class="letter-modal" id="letterModal">
+  <div class="close-letter" id="closeLetter">×</div>
+  <div class="letter-content">
+    <div class="letter-header">
+      <h2 class="letter-title">To My Love</h2>
+      <p class="scene-date">February 14, 2026</p>
+    </div>
+    <div class="letter-body">
+      <p>My Love,</p>
+      
+      <p>Do you remember our first conversation on Snapchat? Just two strangers saying hello. I had no idea that simple "hi" would become the beginning of everything. That you would become my everything.</p>
+      
+      <p>Those nights we spent talking until sunrise, with peacock sounds echoing in the background - they were magic. Pure, simple magic. When we started typing song lyrics to each other, spending hours just sharing music, people might have thought we were crazy. But to me? Those were the most beautiful moments of my life. That was our way of saying "I'm here, I'm yours, I'm not going anywhere."</p>
+      
+      <p>When you blocked me for that one minute after your results, my heart stopped. "Sorry me" - two words that made me realize how much you were struggling too. You felt guilty. You were scared. And that's when I knew - this wasn't just me falling alone. You were falling too.</p>
+      
+      <p>Then came the hardest part. You said you're taking a drop year and we need to talk less. Those words hurt, but I understood. Your dreams mattered. But even in those small conversations, in those stolen moments, my love for you kept growing. Even when you didn't talk to me for weeks and I complained and you got irritated - we were learning. Learning how to love even when it's hard.</p>
+      
+      <p>Diwali. God, that day. When I realized our trains were on the same route, I was terrified. My first time meeting a girl I loved. My legs were shaking so badly I thought I'd fall. And then I panicked - I can't meet you empty-handed! So I ran. Ran like a madman to get you something. Just a chocolate, but it was all I could do. When I saw you for those two minutes, the world stopped. You were real. You were there. You were mine.</p>
+      
+      <p>When you called me from your mother's phone on Diwali, I felt like the luckiest person alive. You found a way to reach me. That meant everything.</p>
+      
+      <p>February 14, 2025. You proposed to me. Best decision you ever made. 😊 And then February 23rd... that day changed my life. Every second is burned into my soul. Your smile. Your laugh. The way being with you felt like finally understanding what home means.</p>
+      
+      <p>But then came the darkness. You blocked me. Three months. Ninety days of not knowing if you were okay. If we were okay. If you even thought about me. May, June, July - the longest, most painful months of my life. Every day I hoped. Every night I prayed. Please let her come back.</p>
+      
+      <p>August came and I broke. I texted you. And you said you wanted to end it. For two hours I begged. I cried. I poured my entire heart out trying to make you understand that what we have is worth fighting for. When you hung up, I died inside. I thought I lost you forever.</p>
+      
+      <p>Ten minutes. Ten minutes of complete despair. And then you called back. Your voice, saying we could try again - that moment brought me back to life. You chose us. You chose love. You chose me.</p>
+      
+      <p>Our love isn't perfect. We fight. You disappear. I complain. We hurt each other. But it's REAL. It's messy and complicated and beautiful and ours. Every tear, every fight, every moment of pain has made us stronger.</p>
+      
+      <p>Thank you for proposing to me one year ago. Thank you for calling back after those ten minutes. Thank you for every moment - the good, the bad, the painful, the beautiful. Thank you for being the person who knows all of me and loves me anyway.</p>
+      
+      <p>You're my home. My safe place. My favorite person. My everything. I love you with every piece of my soul. Today, tomorrow, and for every tomorrow that comes.</p>
+      
+      <p>Happy Anniversary, my love. Here's to us. To surviving everything. To choosing each other. To forever.</p>
+      
+      <p class="letter-signature">Forever and always yours</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Performance: Detect mobile
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+// Optimized starfield
+function createStarfield() {
+  const starfield = document.getElementById('starfield');
+  const starCount = isMobile ? 100 : 150;
+  
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    
+    if (Math.random() > 0.7) star.classList.add('twinkle');
+    
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 4 + 's';
+    
+    starfield.appendChild(star);
+  }
+  
+  // Shooting stars (less frequent on mobile)
+  if (!isMobile) {
+    setInterval(() => {
+      const shootingStar = document.createElement('div');
+      shootingStar.className = 'shooting-star';
+      shootingStar.style.left = Math.random() * 100 + '%';
+      shootingStar.style.top = Math.random() * 50 + '%';
+      starfield.appendChild(shootingStar);
+      
+      setTimeout(() => shootingStar.remove(), 3000);
+    }, 5000);
+  }
+}
+
+// Connection line animation
+function drawConnectionLine(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  
+  let progress = 0;
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const startX = canvas.width * 0.15;
+    const endX = canvas.width * 0.85;
+    const y = canvas.height / 2;
+    const currentX = startX + (endX - startX) * progress;
+    
+    const gradient = ctx.createLinearGradient(startX, y, currentX, y);
+    gradient.addColorStop(0, '#FF6B9D');
+    gradient.addColorStop(0.5, '#8B5CF6');
+    gradient.addColorStop(1, '#F59E0B');
+    
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 3;
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = '#FF6B9D';
+    
+    ctx.beginPath();
+    ctx.moveTo(startX, y);
+    ctx.lineTo(currentX, y);
+    ctx.stroke();
+    
+    if (progress < 1) {
+      progress += 0.01;
+      requestAnimationFrame(animate);
+    }
+  }
+  
+  animate();
+}
+
+// Intersection Observer
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      
+      if (entry.target.id === 'connection') {
+        drawConnectionLine('connectionCanvas');
+      }
+      if (entry.target.id === 'return') {
+        drawConnectionLine('returnCanvas');
+      }
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.scene, .timeline-item').forEach(el => {
+  observer.observe(el);
+});
+
+// Gradient overlay
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = scrolled / maxScroll;
+  
+  document.getElementById('gradientOverlay').style.opacity = Math.min(scrollPercent * 1.5, 0.9);
+  
+  if (scrollPercent > 0.3) {
+    document.getElementById('floatingHearts').classList.add('active');
+  }
+});
+
+// Envelope button
+const envelopeButton = document.getElementById('envelopeButton');
+const letterModal = document.getElementById('letterModal');
+const closeLetter = document.getElementById('closeLetter');
+
+envelopeButton.addEventListener('click', () => {
+  createHeartBurst(envelopeButton);
+  
+  setTimeout(() => {
+    letterModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }, 500);
+});
+
+closeLetter.addEventListener('click', () => {
+  letterModal.classList.remove('show');
+  document.body.style.overflow = 'auto';
+});
+
+letterModal.addEventListener('click', (e) => {
+  if (e.target === letterModal) {
+    closeLetter.click();
+  }
+});
+
+// Heart burst effect
+function createHeartBurst(element) {
+  const rect = element.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  
+  const burstCount = isMobile ? 15 : 25;
+  
+  for (let i = 0; i < burstCount; i++) {
+    const heart = document.createElement('div');
+    heart.textContent = '♡';
+    heart.style.position = 'fixed';
+    heart.style.left = centerX + 'px';
+    heart.style.top = centerY + 'px';
+    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+    heart.style.color = '#FF6B9D';
+    heart.style.pointerEvents = 'none';
+    heart.style.zIndex = '10001';
+    heart.style.filter = 'drop-shadow(0 0 10px var(--rose))';
+    
+    document.body.appendChild(heart);
+    
+    const angle = (Math.PI * 2 * i) / burstCount;
+    const distance = 100 + Math.random() * 100;
+    const targetX = Math.cos(angle) * distance;
+    const targetY = Math.sin(angle) * distance;
+    
+    heart.animate([
+      { 
+        transform: 'translate(-50%, -50%) scale(0)',
+        opacity: 1
+      },
+      { 
+        transform: `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px)) scale(1.5)`,
+        opacity: 0
+      }
+    ], {
+      duration: 2000,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+    });
+    
+    setTimeout(() => heart.remove(), 2000);
+  }
+}
+
+// Floating hearts
+function createFloatingHeart() {
+  const container = document.getElementById('floatingHearts');
+  const heart = document.createElement('div');
+  heart.className = 'floating-heart';
+  heart.textContent = '♡';
+  heart.style.left = Math.random() * 100 + '%';
+  heart.style.setProperty('--float-x', (Math.random() * 200 - 100) + 'px');
+  heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
+  heart.style.fontSize = (Math.random() * 18 + 20) + 'px';
+  
+  container.appendChild(heart);
+  
+  setTimeout(() => heart.remove(), 15000);
+}
+
+if (!isMobile) {
+  setInterval(createFloatingHeart, 2000);
+}
+
+// Touch ripple
+document.querySelectorAll('.timeline-content, .connection-person').forEach(el => {
+  el.addEventListener('click', function(e) {
+    const ripple = document.createElement('div');
+    ripple.style.position = 'absolute';
+    ripple.style.borderRadius = '50%';
+    ripple.style.background = 'rgba(255, 107, 157, 0.5)';
+    ripple.style.width = '20px';
+    ripple.style.height = '20px';
+    ripple.style.pointerEvents = 'none';
+    
+    const rect = this.getBoundingClientRect();
+    ripple.style.left = (e.clientX - rect.left - 10) + 'px';
+    ripple.style.top = (e.clientY - rect.top - 10) + 'px';
+    
+    this.appendChild(ripple);
+    
+    ripple.animate([
+      { transform: 'scale(0)', opacity: 1 },
+      { transform: 'scale(20)', opacity: 0 }
+    ], {
+      duration: 800,
+      easing: 'ease-out'
+    });
+    
+    setTimeout(() => ripple.remove(), 800);
+  });
+});
+
+// Initialize
+createStarfield();
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && letterModal.classList.contains('show')) {
+    closeLetter.click();
+  }
+  if (e.key === 'Escape' && document.getElementById('oyoResponseModal').classList.contains('show')) {
+    document.getElementById('closeOyoResponse').click();
+  }
+});
+
+// OYO Yes Button
+const oyoYesButton = document.getElementById('oyoYesButton');
+const oyoResponseModal = document.getElementById('oyoResponseModal');
+const closeOyoResponse = document.getElementById('closeOyoResponse');
+
+oyoYesButton.addEventListener('click', () => {
+  // Create confetti burst
+  createConfettiBurst();
+  
+  // Create massive heart burst
+  createMassiveHeartBurst(oyoYesButton);
+  
+  // Show modal after short delay
+  setTimeout(() => {
+    oyoResponseModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }, 500);
+});
+
+closeOyoResponse.addEventListener('click', () => {
+  oyoResponseModal.classList.remove('show');
+  document.body.style.overflow = 'auto';
+});
+
+oyoResponseModal.addEventListener('click', (e) => {
+  if (e.target === oyoResponseModal) {
+    closeOyoResponse.click();
+  }
+});
+
+// Confetti burst
+function createConfettiBurst() {
+  const colors = ['#FF1654', '#FF6B9D', '#8B5CF6', '#C8B6FF', '#F59E0B'];
+  const confettiCount = isMobile ? 40 : 80;
+  
+  for (let i = 0; i < confettiCount; i++) {
+    setTimeout(() => {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.top = '-10px';
+      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.width = (Math.random() * 10 + 5) + 'px';
+      confetti.style.height = (Math.random() * 10 + 5) + 'px';
+      confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      confetti.style.animationDelay = (Math.random() * 0.5) + 's';
+      
+      if (Math.random() > 0.5) {
+        confetti.style.borderRadius = '50%';
+      }
+      
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => confetti.remove(), 4000);
+    }, i * 20);
+  }
+}
+
+// Massive heart burst for OYO
+function createMassiveHeartBurst(element) {
+  const rect = element.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  
+  const burstCount = isMobile ? 30 : 50;
+  
+  for (let i = 0; i < burstCount; i++) {
+    const heart = document.createElement('div');
+    heart.textContent = '♡';
+    heart.style.position = 'fixed';
+    heart.style.left = centerX + 'px';
+    heart.style.top = centerY + 'px';
+    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+    heart.style.color = i % 2 === 0 ? '#FF1654' : '#8B5CF6';
+    heart.style.pointerEvents = 'none';
+    heart.style.zIndex = '10003';
+    heart.style.filter = 'drop-shadow(0 0 15px currentColor)';
+    
+    document.body.appendChild(heart);
+    
+    const angle = (Math.PI * 2 * i) / burstCount;
+    const distance = 150 + Math.random() * 200;
+    const targetX = Math.cos(angle) * distance;
+    const targetY = Math.sin(angle) * distance;
+    
+    heart.animate([
+      { 
+        transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+        opacity: 1
+      },
+      { 
+        transform: `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px)) scale(2) rotate(720deg)`,
+        opacity: 0
+      }
+    ], {
+      duration: 2500,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+    }); 
+    
+    setTimeout(() => heart.remove(), 2500);
+  }
+}
+</script>
+<script src="music.js"></script>
+</body>
+</html>
